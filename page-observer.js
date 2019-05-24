@@ -1,6 +1,6 @@
 /**
- * A small plugin that utilizes MutationObservers to listen for DOM changes.
- * If the desired node is found, it can then be bound.
+ * A tiny JS module that utilizes MutationObservers to listen for DOM changes.
+ * If the desired node is found, it executes the callback function you pass to it.
  *
  * It's original use case was for React, to help create a bridge for 
  * re-rendering (ReactDOM.render) to an element in legacy (multi-page) applications 
@@ -22,7 +22,7 @@
  * @param observeAfterCB bool whether or not to keep observing for the element
  *                              after executing the callback
  */
-const createObserver = (selector, callback, observeAfterCB=true) => {
+const createObserver = (selector, callback, observeAfterCB = true) => {
 
 	const body = document.querySelector('body');
 
