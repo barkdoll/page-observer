@@ -27,39 +27,39 @@ const createObserver = (selector, callback, observeAfterCB=true) => {
 	const body = document.querySelector('body');
 
 	const observerOptions = {
-			attributes: true,
-			childList: true,
-			subtree: true // Watch child nodes for changes
+		attributes: true,
+		childList: true,
+		subtree: true // Watch child nodes for changes
 	}
 
 	if ( document.querySelector(selector) !== null )
 	{
-			callback();
+		callback();
 	}
 
 	const nodeObserver = new MutationObserver( (mutations, observer) => {
 
-			const addMutations = mutations
-					.filter(m => m.addedNodes.length > 0);
+		const addMutations = mutations
+			.filter(m => m.addedNodes.length > 0);
 
-			if (addMutations.length <= 0)
-			{
-					return;
-			}
+		if (addMutations.length <= 0)
+		{
+			return;
+		}
 
-			const bindingElm = document.querySelector(selector);
-			if (bindingElm === null)
-			{
-					return;
-			}
+		const bindingElm = document.querySelector(selector);
+		if (bindingElm === null)
+		{
+			return;
+		}
 
-			callback();
-			observer.disconnect();
+		callback();
+		observer.disconnect();
 
-			if ( observeAfterCB )
-			{
-					reinitialize(nodeObserver);
-			}
+		if ( observeAfterCB )
+		{
+			reinitialize(nodeObserver);
+		}
 	});
 
 	nodeObserver.observe(body, observerOptions);
@@ -68,28 +68,28 @@ const createObserver = (selector, callback, observeAfterCB=true) => {
 
 	const reinitialize = (obz) => {
 
-			const reinitializer = new MutationObserver( (mutations, observer) => {
+		const reinitializer = new MutationObserver( (mutations, observer) => {
 
-					const removeMutations = mutations
-							.filter(m => m.removedNodes.length > 0)
+			const removeMutations = mutations
+				.filter(m => m.removedNodes.length > 0)
 
-					if (removeMutations.length <= 0)
-					{
-							return;
-					}
+			if (removeMutations.length <= 0)
+			{
+				return;
+			}
 
-					const bindingElm = document.querySelector(selector);
-					if (bindingElm !== null)
-					{
-							return;
-					}
+			const bindingElm = document.querySelector(selector);
+			if (bindingElm !== null)
+			{
+				return;
+			}
 
-					observer.disconnect();
+			observer.disconnect();
 
-					obz.observe(body, observerOptions)
-			});
+			obz.observe(body, observerOptions)
+		});
 
-			reinitializer.observe(body, observerOptions);
+		reinitializer.observe(body, observerOptions);
 	}
 
 }
