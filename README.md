@@ -16,11 +16,11 @@ The good news is the callback does not have to be React-related— it can be any
 
 ## Usage
 
-7. `import`/`require` it as a module
+1. `import`/`require` it as a module
     ```js
     // example.js
     
-	import page-observer.js
+	import pageObserver from './path/to/page-observer';
 
 	// OR
     
@@ -38,7 +38,7 @@ The good news is the callback does not have to be React-related— it can be any
     <script type="module" src="/path/to/page-observer.mjs"></script>
     <script nomodule src="/path/to/page-observer.js"></script>
     ```
-7. run the observer with your callback 
+1. run the observer with your callback 
 
     ```js
     createObserver('.my-selector', function() { 
@@ -46,4 +46,4 @@ The good news is the callback does not have to be React-related— it can be any
     });
     ```
     
-7. WIN
+1. WIN

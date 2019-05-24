@@ -22,7 +22,7 @@
  * @param observeAfterCB bool whether or not to keep observing for the element
  *                              after executing the callback
  */
-const createObserver = (selector, callback, observeAfterCB = true) => {
+const pageObserver = (selector, callback, observeAfterCB = true) => {
 
 	const body = document.querySelector('body');
 
@@ -94,4 +94,5 @@ const createObserver = (selector, callback, observeAfterCB = true) => {
 
 }
 
-export default createObserver;
+export default pageObserver;
+
